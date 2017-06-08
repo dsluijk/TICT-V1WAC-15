@@ -14,6 +14,11 @@ public class MyServlet extends Thread {
 
 	@Override
 	public void run() {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
 		Scanner scanner = null;
 		try {
 			scanner = new Scanner(this.socket.getInputStream());
