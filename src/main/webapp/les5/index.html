@@ -1,0 +1,89 @@
+<html>
+	<head>
+		<title>Weather site</title>
+		<link rel="stylesheet" type="text/css" href="./style.css">
+	</head>
+	<body>
+		<div id="frame">
+			<div id="myLocation">
+				<h2>Mijn locatie</h2>
+				<ul class="content">
+					<li>
+						<span id="countrycode">Loading..</span>
+						<label for="countrycode">Landcode:</label>
+					</li>
+					<li>
+						<span id="country">Loading..</span>
+						<label for="country">Land:</label>
+					</li>
+					<li>
+						<span id="region">Loading..</span>
+						<label for="region">Regio:</label>
+					</li>
+					<li>
+						
+						<label for="city">Stad:</label><span id="city">Loading..</span>
+					</li>
+					<li>
+						<span id="postalcode">Loading..</span>
+						<label for="postalcode">Postcode:</label>
+					</li>
+					<li>
+						<span id="lat">Loading..</span>
+						<label for="lat">Latitude:</label>
+					</li>
+					<li>
+						<span id="lon">Loading..</span>
+						<label for="lon">Longitude:</label>
+					</li>
+					<li>
+						<span id="ip">Loading..</span>
+						<label for="ip">IP:</label>
+					</li>
+				</ul>
+			</div>
+			<div id="weatherInfo">
+				<h2>Het weer in <span id="cityDisplay">City</span>.</h2>
+				<ul class="content">
+					<li>
+						<label for="tempature">Temperatuur:</label>
+						<span id="tempature">Loading..</span>
+					</li>
+					<li>
+						<label for="humidity">Luchtvochtigheid:</label>
+						<span id="humidity">Loading..</span>
+					</li>
+					<li>
+						<label for="windspeed">Windsnelheid:</label>
+						<span id="windspeed">Loading..</span>
+					</li>
+					<li>
+						<label for="winddirection">Windrichting:</label>
+						<span id="winddirection">Loading..</span>
+					</li>
+					<li>
+						<label for="sunrise">Zonsopgang:</label>
+						<span id="sunrise">Loading..</span>
+					</li>
+					<li>
+						<label for="sunset">Zonsondergang:</label>
+						<span id="sunset">Loading..</span>
+					</li>
+				</ul>
+			</div>
+			<div id="countryList">
+				<h2>Beschikbare vakantiebestemmingen</h2>
+				<table id="countryTable" class="content">
+					<tr>
+						<th>Land</th>
+						<th>Hoofdstad</th>
+						<th>Regio</th>
+						<th>Oppervlakte</th>
+						<th>Inwoners</th>
+					</tr>	
+				</table>
+			</div>
+		</div>
+		<script src="app.js"></script>
+	</body>
+</html>

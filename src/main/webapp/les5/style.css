@@ -1,0 +1,40 @@
+body {
+	background-color: #E0F2F1;
+	color: #004D40;
+	margin: 0;
+	padding: 0;
+}
+
+h2 {
+	width: 96vw;
+	padding: 1vh 1vw;
+	margin: 1vh 1vw;
+	background-color: #00695C;
+	color: #E0F2F1;
+}
+
+ul {
+	list-style: none;
+	width: 35vw;
+	padding: 0;
+}
+
+ul span {
+	float: right;
+	clear: left;
+}
+
+table {
+	width: 98vw;
+	text-align: left;
+	background-color: #4DB6AC;
+	padding: 1vh 1vw;
+}
+
+table tr {
+	cursor: pointer;
+}
+
+.content {
+	margin: 0.5vh 1vw;
+}
