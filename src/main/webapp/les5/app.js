@@ -28,21 +28,36 @@ const initPage = () => {
 
 const showWeather = (lat, lon, city) => {
 	document.getElementById('cityDisplay').innerHTML = city;
+	const storObj = !!localStorage.getItem(city) ? JSON.parse(localStorage.getItem(city)) : false;
+	if(storObj === false || new Date(storObj.modified) < new Date(new Date() - 600000)) {
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', `../restservices/weather?lat=${escape(lat)}&lon=${escape(lon)}`, true);
+		xhr.send();
+	
+		xhr.onreadystatechange = e => {
+			if(e.target.readyState !== 4) return;
+			const res = JSON.parse(e.target.response);
+			localStorage.setItem(city, JSON.stringify({
+				modified: new Date(),
+				data: res,
+			}));
 
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', `../restservices/weather?lat=${escape(lat)}&lon=${escape(lon)}`, true);
-	xhr.send();
-
-	xhr.onreadystatechange = e => {
-		if(e.target.readyState !== 4) return;
-		const res = JSON.parse(e.target.response);
-		document.getElementById('tempature').innerHTML = Math.floor((res.main.temp - 273.15)) + '&deg;';
-		document.getElementById('humidity').innerHTML = res.main.humidity + '%';
-		document.getElementById('windspeed').innerHTML = res.wind.speed + ' M/s';
-		document.getElementById('winddirection').innerHTML = formatWindDirection(res.wind.deg);
-		document.getElementById('sunrise').innerHTML = formatDate(res.sys.sunrise);
-		document.getElementById('sunset').innerHTML = formatDate(res.sys.sunset);
-	};
+			document.getElementById('tempature').innerHTML = Math.floor(res.main.temp - 273.15) + '&deg;';
+			document.getElementById('humidity').innerHTML = res.main.humidity + '%';
+			document.getElementById('windspeed').innerHTML = res.wind.speed + ' M/s';
+			document.getElementById('winddirection').innerHTML = formatWindDirection(res.wind.deg);
+			document.getElementById('sunrise').innerHTML = formatDate(res.sys.sunrise);
+			document.getElementById('sunset').innerHTML = formatDate(res.sys.sunset);
+		};
+	} else {
+		if (new Date(storObj.modified) < new Date(new Date() - 600000)) localStorage.removeItem(city);
+		document.getElementById('tempature').innerHTML = Math.floor(storObj.data.main.temp - 273.15) + '&deg;';
+		document.getElementById('humidity').innerHTML = storObj.data.main.humidity + '%';
+		document.getElementById('windspeed').innerHTML = storObj.data.wind.speed + ' M/s';
+		document.getElementById('winddirection').innerHTML = formatWindDirection(storObj.data.wind.deg);
+		document.getElementById('sunrise').innerHTML = formatDate(storObj.data.sys.sunrise);
+		document.getElementById('sunset').innerHTML = formatDate(storObj.data.sys.sunset);
+	}
 }
 
 const formatWindDirection = degree => {
@@ -65,17 +80,16 @@ const loadCountries = () => {
 		if(e.target.readyState !== 4) return;
 		countries = countries.concat(JSON.parse(e.target.response));
 		for(const country in countries) document.getElementById('countryTable').innerHTML +=
-			`<tr>
+			`<tr class="item">
 				<td>${countries[country]['name']}</td>
 				<td>${countries[country]['capital']}</td>
 				<td>${countries[country]['region']}</td>
-				<td>${countries[country]['surface']}</td>
-				<td>${countries[country]['population']}</td>
+				<td>${countries[country]['surface']} m&sup2;</td>
+				<td>${countries[country]['population']} mensen</td>
 			</tr>`;
 		const items = document.getElementsByTagName('tr');
-		for(let i = 0; i < items.length; i++) {
-			if(i === 0) continue;
-			items[i].addEventListener('click', e => showWeather(countries[i].lat, countries[i].lng, countries[i].capital));
+		for(let i = 1; i < items.length; i++) {
+			items[i].addEventListener('click', e => showWeather(countries[i-1].lat, countries[i-1].lng, countries[i-1].capital));
 		}
 	};
 }

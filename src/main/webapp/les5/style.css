@@ -15,7 +15,6 @@ h2 {
 
 ul {
 	list-style: none;
-	width: 35vw;
 	padding: 0;
 }
 
@@ -25,14 +24,25 @@ ul span {
 }
 
 table {
-	width: 98vw;
+	display: block;
 	text-align: left;
 	background-color: #4DB6AC;
 	padding: 1vh 1vw;
+	overflow-x: auto;
 }
 
-table tr {
+table .item {
 	cursor: pointer;
+}
+
+table .item:hover {
+	color: #00695C;
+	text-decoration: underline;
+}
+
+table td {
+	min-width: 200px;
+	white-space: nowrap;
 }
 
 .content {
