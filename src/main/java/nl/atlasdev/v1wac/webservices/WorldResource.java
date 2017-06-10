@@ -1,5 +1,7 @@
 package nl.atlasdev.v1wac.webservices;
 
+import java.sql.SQLException;
+
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
@@ -16,7 +18,7 @@ import nl.atlasdev.v1wac.model.WorldService;
 public class WorldResource {
 	@GET
 	@Produces("application/json")
-	public String getCountries() {
+	public String getCountries() throws SQLException {
 		WorldService service = ServiceProvider.getWorldService();
 		JsonArrayBuilder world = Json.createArrayBuilder();
 		for (Country c : service.getAllCountries()) {
@@ -28,7 +30,7 @@ public class WorldResource {
 	@GET
 	@Path("{code}")
 	@Produces("application/json")
-	public String getCountry(@PathParam("code") String code) {
+	public String getCountry(@PathParam("code") String code) throws SQLException {
 		WorldService service = ServiceProvider.getWorldService();
 		return buildCountry(service.getCountryByCode(code)).build().toString();
 	}
@@ -36,7 +38,7 @@ public class WorldResource {
 	@GET
 	@Path("/largestsurfaces")
 	@Produces("application/json")
-	public String getSurfaceCountry() {
+	public String getSurfaceCountry() throws SQLException {
 		WorldService service = ServiceProvider.getWorldService();
 		JsonArrayBuilder world = Json.createArrayBuilder();
 		for (Country c : service.get10LargestSurfaces()) {
@@ -48,7 +50,7 @@ public class WorldResource {
 	@GET
 	@Path("/largestpopulations")
 	@Produces("application/json")
-	public String getPopulationCountry() {
+	public String getPopulationCountry() throws SQLException {
 		WorldService service = ServiceProvider.getWorldService();
 		JsonArrayBuilder world = Json.createArrayBuilder();
 		for (Country c : service.get10LargestPopulations()) {

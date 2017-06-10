@@ -9,7 +9,7 @@ body {
 #frame {
 	display: grid;
 	grid-template-rows: auto;
-	grid-template-columns: 50vw 50vw;
+	grid-template-columns: 49vw 50vw;
 }
 
 #myLocation {
