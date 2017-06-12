@@ -48,9 +48,15 @@ public class CountryDAO extends BaseDAO {
 	}
 	
 	public boolean delete(Country country) throws SQLException {
-		PreparedStatement statement = super.getConnection().prepareStatement("delete from country where code = ?");
-		statement.setString(1, country.getIso3Code());
-		return statement.executeUpdate() == 0 ? true : false;
+		PreparedStatement statement1 = super.getConnection().prepareStatement("delete from city where countrycode = ?");
+		statement1.setString(1, country.getIso3Code());
+		statement1.executeUpdate();
+		PreparedStatement statement2 = super.getConnection().prepareStatement("delete from countrylanguage where countrycode = ?");
+		statement2.setString(1, country.getIso3Code());
+		statement2.executeUpdate();
+		PreparedStatement statement3 = super.getConnection().prepareStatement("delete from country where code = ?");
+		statement3.setString(1, country.getIso3Code());
+		return statement3.executeUpdate() != 0 ? true : false;
 	}
 	
 	private ArrayList<Country> formatResult(ResultSet resultSet) throws SQLException {

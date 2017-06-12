@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -33,6 +34,14 @@ public class WorldResource {
 	public String getCountry(@PathParam("code") String code) throws SQLException {
 		WorldService service = ServiceProvider.getWorldService();
 		return buildCountry(service.getCountryByCode(code)).build().toString();
+	}
+
+	@DELETE
+	@Path("{code}")
+	@Produces("application/json")
+	public String deleteCountry(@PathParam("code") String code) throws SQLException {
+		WorldService service = ServiceProvider.getWorldService();
+		return Json.createObjectBuilder().add("ok", service.deleteCountry(service.getCountryByCode(code))).build().toString();
 	}
 
 	@GET

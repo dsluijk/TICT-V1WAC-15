@@ -1,0 +1,117 @@
+body {
+	background-color: #E0F2F1;
+	color: #004D40;
+	margin: 0;
+	padding: 0;
+	font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
+}
+
+#frame {
+	display: grid;
+	grid-template-rows: auto;
+	grid-template-columns: 19vw 20vw 60vw;
+}
+
+#login {
+	grid-row-start: 1;
+	grid-row-end: 1;
+	grid-column-start: 1;
+	grid-column-end: 1;
+}
+
+#filter {
+	grid-row-start: 1;
+	grid-row-end: 1;
+	grid-column-start: 2;
+	grid-column-end: 2;
+}
+
+#selectedCountry {
+	grid-row-start: 1;
+	grid-row-end: 1;
+	grid-column-start: 3;
+	grid-column-end: 3;
+}
+
+#countryList {
+	grid-row-start: 3;
+	grid-row-end: 3;
+	grid-column-start: 1;
+	grid-column-end: 4;
+}
+
+.content {
+	margin: 1vh 1vw;
+}
+
+.fullwidth {
+	width: 100%;
+}
+
+.hidden {
+	display: none;
+	visibility: hidden;
+}
+
+h2 {
+	padding: 1vh 1vw;
+	margin: 1vh 1vw;
+	background-color: #00695C;
+	color: #E0F2F1;
+}
+
+table {
+	display: block;
+	text-align: left;
+	background-color: #4DB6AC;
+	padding: 1vh 1vw;
+	overflow-x: auto;
+}
+
+table td {
+	min-width: 200px;
+	white-space: nowrap;
+}
+
+table td a {
+	color: #00695C;
+	cursor: pointer;
+}
+
+input {
+    background-color: #B2DFDB;
+    border: solid 1px #80CBC4;
+    height: 40px;
+    padding: 0 10px;
+	color: #00695C;
+	margin-bottom: 10px;
+}
+
+button {
+	background-color: #26A69A;
+	border: none;
+	color: #E0F2F1;
+	padding: 10px 0;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	cursor: pointer;
+	width: 100%;
+}
+
+@media screen and (max-width: 750px) {
+    #login {
+		grid-row-start: 1;
+		grid-row-end: 1;
+		grid-column-start: 1;
+		grid-column-end: 3;
+	}
+	
+	#selectedCountry {
+		grid-row-start: 2;
+		grid-row-end: 2;
+		grid-column-start: 1;
+		grid-column-end: 3;
+	}
+}

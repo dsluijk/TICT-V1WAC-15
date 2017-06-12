@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<title>Weather site</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="./style.css">
+	</head>
+	<body>
+		<div id="frame">
+			<div id="login">
+				<h2>Login</h2>
+				<div class="content">
+					<input id="username" type="text" placeholder="Gebruikersnaam" class="fullwidth" />
+					<input id="password" type="password" placeholder="Wachtwoord" class="fullwidth" />
+					<button id="logginButton">Login</button>
+				</div>
+			</div>
+			<div id="filter">
+				<h2>Filter</h2>
+				<div class="content">
+					<p>FTS is erg langzaam, het kan even duren voor alles doorzocht is.</p>
+					<input id="filterInput" type="text" placeholder="Full text search!" class="fullwidth" />
+				</div>
+			</div>
+			<div id="selectedCountry">
+				<h2>balbla.</h2>
+				<div class="content">dedd</div>
+			</div>
+			<div id="countryList">
+				<h2>Landen in de database</h2>
+				<table id="countryTable" class="content">
+					<tr>
+						<th>Land</th>
+						<th>Hoofdstad</th>
+						<th>Regio</th>
+						<th>Acties</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<script src="app.js"></script>
+	</body>
+</html>

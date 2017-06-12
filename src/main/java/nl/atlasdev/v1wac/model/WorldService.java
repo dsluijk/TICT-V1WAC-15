@@ -30,4 +30,8 @@ public class WorldService {
 	public Country getCountryByCode(String code) throws SQLException {
 		return this.dao.findByCode(code);
 	}
+	
+	public boolean deleteCountry(Country country) throws SQLException {
+		return this.dao.delete(country);
+	}
 }
